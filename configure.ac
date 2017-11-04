@@ -157,6 +157,14 @@ if test "${enable_accept4}" != "no"; then
     AC_CHECK_FUNCS_ONCE(accept4)
 fi
 
+
+# -----------------------------------------------------------------------------
+# Doxygen support
+
+m4_pattern_allow(AM_DEFAULT_VERBOSITY)
+DX_INIT_DOXYGEN(AC_PACKAGE_NAME, doxygen/Doxyfile, doc)
+
+
 # -----------------------------------------------------------------------------
 # operating system detection
 

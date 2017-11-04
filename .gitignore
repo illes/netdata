@@ -107,6 +107,7 @@ diagrams/*.atxt
 diagrams/plantuml.jar
 
 netdata.cppcheck
+doc/
 
 profile/statsd-stress
 src/cgroup-network

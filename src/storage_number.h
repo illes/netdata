@@ -1,6 +1,10 @@
 #ifndef NETDATA_STORAGE_NUMBER_H
 #define NETDATA_STORAGE_NUMBER_H
 
+/**
+ * @file storage_number.h
+ */
+
 typedef long double calculated_number;
 #define CALCULATED_NUMBER_FORMAT "%0.7Lf"
 //typedef long long calculated_number;
@@ -34,7 +38,7 @@ typedef uint32_t storage_number;
 
 #define SN_FLAGS_MASK       (~(0x6 << 24))
 
-// extract the flags
+/// extract the flags
 #define get_storage_number_flags(value) ((((storage_number)(value)) & (1 << 24)) | (((storage_number)(value)) & (2 << 24)) | (((storage_number)(value)) & (4 << 24)))
 #define SN_EMPTY_SLOT 0x00000000
 
@@ -52,7 +56,7 @@ int print_calculated_number(char *str, calculated_number value);
 #define STORAGE_NUMBER_NEGATIVE_MAX (-0.0000001)
 #define STORAGE_NUMBER_NEGATIVE_MIN (-167772150000000.0)
 
-// accepted accuracy loss
+/// accepted accuracy loss
 #define ACCURACY_LOSS 0.0001
 #define accuracy_loss(t1, t2) (((t1) == (t2) || (t1) == 0.0 || (t2) == 0.0) ? 0.0 : (100.0 - (((t1) > (t2)) ? ((t2) * 100.0 / (t1) ) : ((t1) * 100.0 / (t2)))))
 

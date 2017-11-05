@@ -2,7 +2,12 @@
 #ifndef _AVL_H
 #define _AVL_H 1
 
-/* Maximum AVL tree height. */
+/**
+ * @file avl.h
+ * @brief AVL tree, a self-balancing binary search tree.
+ */
+
+/** Maximum AVL tree height. */
 #ifndef AVL_MAX_HEIGHT
 #define AVL_MAX_HEIGHT 92
 #endif
@@ -24,13 +29,13 @@
 
 /* Data structures */
 
-/* One element of the AVL tree */
+/** One element of the AVL tree */
 typedef struct avl {
-    struct avl *avl_link[2];  /* Subtrees. */
-    signed char avl_balance;       /* Balance factor. */
+    struct avl *avl_link[2];  /**< Subtrees. */
+    signed char avl_balance;       /**< Balance factor. */
 } avl;
 
-/* An AVL tree */
+/** An AVL tree */
 typedef struct avl_tree {
     avl *root;
     int (*compar)(void *a, void *b);
@@ -50,7 +55,7 @@ typedef struct avl_tree_lock {
 
 /* Public methods */
 
-/* Insert element a into the AVL tree t
+/** Insert element a into the AVL tree t
  * returns the added element a, or a pointer the
  * element that is equal to a (as returned by t->compar())
  * a is linked directly to the tree, so it has to
@@ -59,7 +64,7 @@ typedef struct avl_tree_lock {
 avl *avl_insert_lock(avl_tree_lock *t, avl *a) NEVERNULL WARNUNUSED;
 avl *avl_insert(avl_tree *t, avl *a) NEVERNULL WARNUNUSED;
 
-/* Remove an element a from the AVL tree t
+/** Remove an element a from the AVL tree t
  * returns a pointer to the removed element
  * or NULL if an element equal to a is not found
  * (equal as returned by t->compar())
@@ -67,14 +72,14 @@ avl *avl_insert(avl_tree *t, avl *a) NEVERNULL WARNUNUSED;
 avl *avl_remove_lock(avl_tree_lock *t, avl *a) WARNUNUSED;
 avl *avl_remove(avl_tree *t, avl *a) WARNUNUSED;
 
-/* Find the element into the tree that equal to a
+/** Find the element into the tree that equal to a
  * (equal as returned by t->compar())
  * returns NULL is no element is equal to a
  */
 avl *avl_search_lock(avl_tree_lock *t, avl *a);
 avl *avl_search(avl_tree *t, avl *a);
 
-/* Initialize the avl_tree_lock
+/** Initialize the avl_tree_lock
  */
 void avl_init_lock(avl_tree_lock *t, int (*compar)(void *a, void *b));
 void avl_init(avl_tree *t, int (*compar)(void *a, void *b));

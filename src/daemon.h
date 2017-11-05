@@ -1,6 +1,10 @@
 #ifndef NETDATA_DAEMON_H
 #define NETDATA_DAEMON_H 1
 
+/**
+ * @file daemon.h
+ */
+
 extern int become_user(const char *username, int pid_fd);
 
 extern int become_daemon(int dont_fork, const char *user);

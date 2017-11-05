@@ -2,6 +2,10 @@
 #define NETDATA_MAIN_H 1
 
 /**
+ * @file main.h
+ */
+
+/**
  * This struct contains information about command line options.
  */
 struct option_def {

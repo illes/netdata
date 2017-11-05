@@ -1,6 +1,10 @@
 #ifndef NETDATA_DICTIONARY_H
 #define NETDATA_DICTIONARY_H 1
 
+/**
+ * @file dictionary.h
+ */
+
 struct dictionary_stats {
     unsigned long long inserts;
     unsigned long long deletes;
@@ -9,10 +13,10 @@ struct dictionary_stats {
 };
 
 typedef struct name_value {
-    avl avl;                // the index - this has to be first!
+    avl avl;                ///< the index - this has to be first!
 
-    uint32_t hash;          // a simple hash to speed up searching
-                            // we first compare hashes, and only if the hashes are equal we do string comparisons
+    uint32_t hash;          ///< a simple hash to speed up searching
+                            ///< we first compare hashes, and only if the hashes are equal we do string comparisons
 
     char *name;
     void *value;

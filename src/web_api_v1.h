@@ -1,6 +1,10 @@
 #ifndef NETDATA_WEB_API_V1_H
 #define NETDATA_WEB_API_V1_H
 
+/**
+ * @file web_api_v1.h
+ */
+
 extern int web_client_api_request_v1_data_group(char *name, int def);
 extern uint32_t web_client_api_request_v1_data_options(char *o);
 extern uint32_t web_client_api_request_v1_data_format(char *name);

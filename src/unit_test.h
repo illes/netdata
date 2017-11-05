@@ -1,6 +1,10 @@
 #ifndef NETDATA_UNIT_TEST_H
 #define NETDATA_UNIT_TEST_H 1
 
+/**
+ * @file unit_test.h
+ */
+
 extern int unit_test_storage(void);
 extern int unit_test(long delay, long shift);
 extern int run_all_mockup_tests(void);

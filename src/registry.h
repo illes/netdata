@@ -1,5 +1,6 @@
-/*
- * netdata registry
+/**
+ * @file registry.h
+ * @brief netdata registry
  *
  * this header file describes the public interface
  * to the netdata registry
@@ -51,12 +52,12 @@
 
 #define NETDATA_REGISTRY_COOKIE_NAME "netdata_registry_id"
 
-// initialize the registry
-// should only happen when netdata starts
+/// initialize the registry
+/// should only happen when netdata starts
 extern int registry_init(void);
 
-// free all data held by the registry
-// should only happen when netdata exits
+/// free all data held by the registry
+/// should only happen when netdata exits
 extern void registry_free(void);
 
 // HTTP requests handled by the registry
@@ -66,7 +67,7 @@ extern int registry_request_search_json(RRDHOST *host, struct web_client *w, cha
 extern int registry_request_switch_json(RRDHOST *host, struct web_client *w, char *person_guid, char *machine_guid, char *url, char *new_person_guid, time_t when);
 extern int registry_request_hello_json(RRDHOST *host, struct web_client *w);
 
-// update the registry monitoring charts
+/// update the registry monitoring charts
 extern void registry_statistics(void);
 
 extern char *registry_get_this_machine_guid(void);

@@ -1,10 +1,11 @@
 #ifndef NETDATA_CLOCKS_H
 #define NETDATA_CLOCKS_H 1
 
+
 #ifndef HAVE_STRUCT_TIMESPEC
 struct timespec {
-    time_t tv_sec;  /* seconds */
-    long   tv_nsec; /* nanoseconds */
+    time_t tv_sec;  /**< seconds */
+    long   tv_nsec; /**< nanoseconds */
 };
 #endif
 
@@ -19,30 +20,30 @@ typedef long long susec_t;
 
 typedef usec_t heartbeat_t;
 
-/* Linux value is as good as any other */
 #ifndef CLOCK_REALTIME
+/** Linux value is as good as any other */
 #define CLOCK_REALTIME  0
 #endif
 
 #ifndef CLOCK_MONOTONIC
-/* fallback to CLOCK_REALTIME if not available */
+/** fallback to CLOCK_REALTIME if not available */
 #define CLOCK_MONOTONIC CLOCK_REALTIME
 #endif
 
 #ifndef CLOCK_BOOTTIME
 
 #ifdef CLOCK_UPTIME
-/* CLOCK_BOOTTIME falls back to CLOCK_UPTIME on FreeBSD */
+/** CLOCK_BOOTTIME falls back to CLOCK_UPTIME on FreeBSD */
 #define CLOCK_BOOTTIME CLOCK_UPTIME
 #else // CLOCK_UPTIME
-/* CLOCK_BOOTTIME falls back to CLOCK_MONOTONIC */
+/** CLOCK_BOOTTIME falls back to CLOCK_MONOTONIC */
 #define CLOCK_BOOTTIME  CLOCK_MONOTONIC
 #endif // CLOCK_UPTIME
 
 #else // CLOCK_BOOTTIME
 
 #ifdef HAVE_CLOCK_GETTIME
-#define CLOCK_BOOTTIME_IS_AVAILABLE 1 // required for /proc/uptime
+#define CLOCK_BOOTTIME_IS_AVAILABLE 1 ///< required for /proc/uptime
 #endif // HAVE_CLOCK_GETTIME
 
 #endif // CLOCK_BOOTTIME
@@ -58,7 +59,7 @@ typedef usec_t heartbeat_t;
 #define USEC_PER_MS     1000ULL
 
 #ifndef HAVE_CLOCK_GETTIME
-/* Fallback function for POSIX.1-2001 clock_gettime() function.
+/** Fallback function for POSIX.1-2001 clock_gettime() function.
  *
  * We use a realtime clock from gettimeofday(), this will
  * make systems without clock_gettime() support sensitive
@@ -67,7 +68,10 @@ typedef usec_t heartbeat_t;
 extern int clock_gettime(clockid_t clk_id, struct timespec *ts);
 #endif
 
-/*
+/**
+ * @file clocks.h
+ * @brief Get system time.
+ * 
  * Three clocks are available (cf. man 3 clock_gettime):
  *
  * REALTIME clock (i.e. wall-clock):
@@ -92,6 +96,7 @@ extern int clock_gettime(clockid_t clk_id, struct timespec *ts);
  * All now_*_sec() functions return the time in seconds from the approriate clock, or 0 on error.
  * All now_*_usec() functions return the time in microseconds from the approriate clock, or 0 on error.
  */
+
 extern int now_realtime_timeval(struct timeval *tv);
 extern time_t now_realtime_sec(void);
 extern usec_t now_realtime_usec(void);
@@ -113,12 +118,12 @@ extern susec_t dt_usec_signed(struct timeval *now, struct timeval *old);
 
 extern void heartbeat_init(heartbeat_t *hb);
 
-/* Sleeps until next multiple of tick using monotonic clock.
+/** Sleeps until next multiple of tick using monotonic clock.
  * Returns elapsed time in microseconds since previous heartbeat
  */
 extern usec_t heartbeat_next(heartbeat_t *hb, usec_t tick);
 
-/* Returns elapsed time in microseconds since last heartbeat */
+/** Returns elapsed time in microseconds since last heartbeat */
 extern usec_t heartbeat_dt_usec(heartbeat_t *hb);
 
 #endif /* NETDATA_CLOCKS_H */

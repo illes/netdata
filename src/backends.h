@@ -1,6 +1,10 @@
 #ifndef NETDATA_BACKENDS_H
 #define NETDATA_BACKENDS_H 1
 
+/**
+ * @file backends.h
+ */
+
 #define BACKEND_SOURCE_DATA_AS_COLLECTED 0x00000001
 #define BACKEND_SOURCE_DATA_AVERAGE      0x00000002
 #define BACKEND_SOURCE_DATA_SUM          0x00000004
@@ -18,13 +22,13 @@ extern int backends_can_send_rrdset(uint32_t options, RRDSET *st);
 extern uint32_t backend_parse_data_source(const char *source, uint32_t mode);
 
 extern calculated_number backend_calculate_value_from_stored_data(
-        RRDSET *st                  // the chart
-        , RRDDIM *rd                // the dimension
-        , time_t after              // the start timestamp
-        , time_t before             // the end timestamp
-        , uint32_t options          // BACKEND_SOURCE_* bitmap
-        , time_t *first_timestamp   // the timestamp of the first point used in this response
-        , time_t *last_timestamp    // the timestamp that should be reported to backend
+        RRDSET *st                  ///< the chart
+        , RRDDIM *rd                ///< the dimension
+        , time_t after              ///< the start timestamp
+        , time_t before             ///< the end timestamp
+        , uint32_t options          ///< BACKEND_SOURCE_* bitmap
+        , time_t *first_timestamp   ///< the timestamp of the first point used in this response
+        , time_t *last_timestamp    ///< the timestamp that should be reported to backend
 );
 
 #endif /* NETDATA_BACKENDS_H */

@@ -1,6 +1,10 @@
 #ifndef NETDATA_LOCKS_H
 #define NETDATA_LOCKS_H
 
+/**
+ * @file locks.h
+ */
+
 // ----------------------------------------------------------------------------
 // mutex
 

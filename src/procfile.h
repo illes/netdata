@@ -1,5 +1,6 @@
-/*
- * procfile is a library for reading kernel files from /proc
+/**
+ * @file procfile.h
+ * @brief procfile is a library for reading kernel files from /proc.
  *
  * The idea is this:
  *
@@ -27,12 +28,12 @@
 #define NETDATA_PROCFILE_H 1
 
 // ----------------------------------------------------------------------------
-// An array of words
+/// An array of words
 
 typedef struct {
-    size_t len;     // used entries
-    size_t size;    // capacity
-    char *words[];  // array of pointers
+    size_t len;     ///< used entries
+    size_t size;    ///< capacity
+    char *words[];  ///< array of pointers
 } pfwords;
 
 
@@ -40,15 +41,15 @@ typedef struct {
 // An array of lines
 
 typedef struct {
-    size_t words;   // how many words this line has
-    size_t first;   // the id of the first word of this line
-                    // in the words array
+    size_t words;   ///< how many words this line has
+    size_t first;   ///< the id of the first word of this line
+                    ///< in the words array
 } ffline;
 
 typedef struct {
-    size_t len;     // used entries
-    size_t size;    // capacity
-    ffline lines[]; // array of lines
+    size_t len;     ///< used entries
+    size_t size;    ///< capacity
+    ffline lines[]; ///< array of lines
 } pflines;
 
 
@@ -68,32 +69,32 @@ typedef enum procfile_separator {
 } PF_CHAR_TYPE;
 
 typedef struct {
-    char filename[FILENAME_MAX + 1]; // not populated until profile_filename() is called
+    char filename[FILENAME_MAX + 1]; ///< not populated until profile_filename() is called
 
     uint32_t flags;
-    int fd;               // the file desriptor
-    size_t len;           // the bytes we have placed into data
-    size_t size;          // the bytes we have allocated for data
+    int fd;               ///< the file desriptor
+    size_t len;           ///< the bytes we have placed into data
+    size_t size;          ///< the bytes we have allocated for data
     pflines *lines;
     pfwords *words;
     PF_CHAR_TYPE separators[256];
-    char data[];          // allocated buffer to keep file contents
+    char data[];          ///< allocated buffer to keep file contents
 } procfile;
 
-// close the proc file and free all related memory
+/// close the proc file and free all related memory
 extern void procfile_close(procfile *ff);
 
-// (re)read and parse the proc file
+/// (re)read and parse the proc file
 extern procfile *procfile_readall(procfile *ff);
 
-// open a /proc or /sys file
+/// open a /proc or /sys file
 extern procfile *procfile_open(const char *filename, const char *separators, uint32_t flags);
 
-// re-open a file
-// if separators == NULL, the last separators are used
+/// re-open a file
+/// if separators == NULL, the last separators are used
 extern procfile *procfile_reopen(procfile *ff, const char *filename, const char *separators, uint32_t flags);
 
-// example walk-through a procfile parsed file
+/// example walk-through a procfile parsed file
 extern void procfile_print(procfile *ff);
 
 extern void procfile_set_quotes(procfile *ff, const char *quotes);
@@ -103,22 +104,22 @@ extern char *procfile_filename(procfile *ff);
 
 // ----------------------------------------------------------------------------
 
-// set this to 1, to have procfile adapt its initial buffer allocation to the max allocation used so far
+/// set this to 1, to have procfile adapt its initial buffer allocation to the max allocation used so far
 extern int procfile_adaptive_initial_allocation;
 
-// return the number of lines present
+/// return the number of lines present
 #define procfile_lines(ff) (ff->lines->len)
 
-// return the number of words of the Nth line
+/// return the number of words of the Nth line
 #define procfile_linewords(ff, line) (((line) < procfile_lines(ff)) ? (ff)->lines->lines[(line)].words : 0)
 
-// return the Nth word of the file, or empty string
+/// return the Nth word of the file, or empty string
 #define procfile_word(ff, word) (((word) < (ff)->words->len) ? (ff)->words->words[(word)] : "")
 
-// return the first word of the Nth line, or empty string
+/// return the first word of the Nth line, or empty string
 #define procfile_line(ff, line) (((line) < procfile_lines(ff)) ? procfile_word((ff), (ff)->lines->lines[(line)].first) : "")
 
-// return the Nth word of the current line
+/// return the Nth word of the current line
 #define procfile_lineword(ff, line, word) (((line) < procfile_lines(ff) && (word) < procfile_linewords(ff, (line))) ? procfile_word((ff), (ff)->lines->lines[(line)].first + word) : "")
 
 #endif /* NETDATA_PROCFILE_H */

@@ -15,9 +15,9 @@ typedef uint64_t kernel_uint_t;
 
 #define str2pid_t(string) str2uint32_t(string)
 
-
-// for faster execution, allow the compiler to inline
-// these functions that are called thousands of times per second
+/// @file inlined.h
+/// for faster execution, allow the compiler to inline
+/// these functions that are called thousands of times per second
 
 static inline uint32_t simple_hash(const char *name) {
     unsigned char *s = (unsigned char *) name;

@@ -1,6 +1,10 @@
 #ifndef NETDATA_WEB_SERVER_H
 #define NETDATA_WEB_SERVER_H 1
 
+/**
+ * @file web_server.h
+ */
+
 #define WEB_PATH_FILE               "file"
 #define WEB_PATH_DATA               "data"
 #define WEB_PATH_DATASOURCE         "datasource"

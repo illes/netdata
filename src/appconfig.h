@@ -1,6 +1,10 @@
 #ifndef NETDATA_CONFIG_H
 #define NETDATA_CONFIG_H 1
 
+/**
+ * @file appconfig.h
+ */
+
 #define CONFIG_FILENAME "netdata.conf"
 
 #define CONFIG_SECTION_GLOBAL   "global"
@@ -12,8 +16,8 @@
 #define CONFIG_SECTION_BACKEND  "backend"
 #define CONFIG_SECTION_STREAM   "stream"
 
-// these are used to limit the configuration names and values lengths
-// they are not enforced by config.c functions (they will strdup() all strings, no matter of their length)
+/// these are used to limit the configuration names and values lengths
+/// they are not enforced by config.c functions (they will strdup() all strings, no matter of their length)
 #define CONFIG_MAX_NAME 1024
 #define CONFIG_MAX_VALUE 2048
 

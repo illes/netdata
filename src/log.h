@@ -1,6 +1,10 @@
 #ifndef NETDATA_LOG_H
 #define NETDATA_LOG_H 1
 
+/**
+ * @file log.h
+ */
+
 #define D_WEB_BUFFER        0x0000000000000001
 #define D_WEB_CLIENT        0x0000000000000002
 #define D_LISTENER          0x0000000000000004

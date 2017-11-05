@@ -1,6 +1,10 @@
 #ifndef NETDATA_PLUGIN_PROC_H
 #define NETDATA_PLUGIN_PROC_H 1
 
+/**
+ * @file plugin_proc.h
+ */
+
 void *proc_main(void *ptr);
 
 extern int do_proc_net_dev(int update_every, usec_t dt);
@@ -29,7 +33,7 @@ extern int do_proc_spl_kstat_zfs_arcstats(int update_every, usec_t dt);
 
 extern int get_numa_node_count(void);
 
-// metrics that need to be shared among data collectors
+/// metrics that need to be shared among data collectors
 extern unsigned long long tcpext_TCPSynRetrans;
 
 // netdev renames

@@ -1,6 +1,10 @@
 #ifndef NETDATA_SIGNALS_H
 #define NETDATA_SIGNALS_H
 
+/**
+ * @file signals.h
+ */
+
 extern void signals_init(void);
 extern void signals_block(void);
 extern void signals_unblock(void);

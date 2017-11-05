@@ -1,6 +1,10 @@
 #ifndef NETDATA_RRDPUSH_H
 #define NETDATA_RRDPUSH_H
 
+/**
+ * @file rrdpush.h
+ */
+
 extern int default_rrdpush_enabled;
 extern char *default_rrdpush_destination;
 extern char *default_rrdpush_api_key;

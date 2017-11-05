@@ -1,6 +1,10 @@
 #ifndef NETDATA_WEB_CLIENT_H
 #define NETDATA_WEB_CLIENT_H 1
 
+/**
+ * @file web_client.h
+ */
+
 #define DEFAULT_DISCONNECT_IDLE_WEB_CLIENTS_AFTER_SECONDS 60
 extern int web_client_timeout;
 
@@ -21,22 +25,22 @@ typedef enum web_client_mode {
 } WEB_CLIENT_MODE;
 
 typedef enum web_client_flags {
-    WEB_CLIENT_FLAG_OBSOLETE          = 1 << 0, // if set, the listener will remove this client
-    // after setting this, you should not touch
-    // this web_client
+    WEB_CLIENT_FLAG_OBSOLETE          = 1 << 0, ///< if set, the listener will remove this client
+    ///< after setting this, you should not touch
+    ///< this web_client
 
-    WEB_CLIENT_FLAG_DEAD              = 1 << 1, // if set, this client is dead
+    WEB_CLIENT_FLAG_DEAD              = 1 << 1, ///< if set, this client is dead
 
-    WEB_CLIENT_FLAG_KEEPALIVE         = 1 << 2, // if set, the web client will be re-used
+    WEB_CLIENT_FLAG_KEEPALIVE         = 1 << 2, ///< if set, the web client will be re-used
 
-    WEB_CLIENT_FLAG_WAIT_RECEIVE      = 1 << 3, // if set, we are waiting more input data
-    WEB_CLIENT_FLAG_WAIT_SEND         = 1 << 4, // if set, we have data to send to the client
+    WEB_CLIENT_FLAG_WAIT_RECEIVE      = 1 << 3, ///< if set, we are waiting more input data
+    WEB_CLIENT_FLAG_WAIT_SEND         = 1 << 4, ///< if set, we have data to send to the client
 
-    WEB_CLIENT_FLAG_DO_NOT_TRACK      = 1 << 5, // if set, we should not set cookies on this client
-    WEB_CLIENT_FLAG_TRACKING_REQUIRED = 1 << 6, // if set, we need to send cookies
+    WEB_CLIENT_FLAG_DO_NOT_TRACK      = 1 << 5, ///< if set, we should not set cookies on this client
+    WEB_CLIENT_FLAG_TRACKING_REQUIRED = 1 << 6, ///< if set, we need to send cookies
 
-    WEB_CLIENT_FLAG_TCP_CLIENT        = 1 << 7, // if set, the client is using a TCP socket
-    WEB_CLIENT_FLAG_UNIX_CLIENT       = 1 << 8  // if set, the client is using a UNIX socket
+    WEB_CLIENT_FLAG_TCP_CLIENT        = 1 << 7, ///< if set, the client is using a TCP socket
+    WEB_CLIENT_FLAG_UNIX_CLIENT       = 1 << 8  ///< if set, the client is using a UNIX socket
 } WEB_CLIENT_FLAGS;
 
 //#ifdef HAVE_C___ATOMIC
@@ -88,21 +92,21 @@ typedef enum web_client_flags {
 #define ORIGIN_MAX 1024
 
 struct response {
-    BUFFER *header;                 // our response header
-    BUFFER *header_output;          // internal use
-    BUFFER *data;                   // our response data buffer
+    BUFFER *header;                 ///< our response header
+    BUFFER *header_output;          ///< internal use
+    BUFFER *data;                   ///< our response data buffer
 
-    int code;                       // the HTTP response code
+    int code;                       ///< the HTTP response code
 
-    size_t rlen;                    // if non-zero, the excepted size of ifd (input of firecopy)
-    size_t sent;                    // current data length sent to output
+    size_t rlen;                    ///< if non-zero, the excepted size of ifd (input of firecopy)
+    size_t sent;                    ///< current data length sent to outpu/<t
 
-    int zoutput;                    // if set to 1, web_client_send() will send compressed data
+    int zoutput;                    ///< if set to 1, web_client_send() will send compressed data
 #ifdef NETDATA_WITH_ZLIB
-    z_stream zstream;               // zlib stream for sending compressed output to client
-    Bytef zbuffer[ZLIB_CHUNK];      // temporary buffer for storing compressed output
-    size_t zsent;                   // the compressed bytes we have sent to the client
-    size_t zhave;                   // the compressed bytes that we have received from zlib
+    z_stream zstream;               ///< zlib stream for sending compressed output to client
+    Bytef zbuffer[ZLIB_CHUNK];      ///< temporary buffer for storing compressed output
+    size_t zsent;                   ///< the compressed bytes we have sent to the client
+    size_t zhave;                   ///< the compressed bytes that we have received from zlib
     int zinitialized:1;
 #endif /* NETDATA_WITH_ZLIB */
 
@@ -129,11 +133,11 @@ typedef enum web_client_acl {
 struct web_client {
     unsigned long long id;
 
-    WEB_CLIENT_FLAGS flags;             // status flags for the client
-    WEB_CLIENT_MODE mode;               // the operational mode of the client
-    WEB_CLIENT_ACL acl;                 // the access list of the client
+    WEB_CLIENT_FLAGS flags;             ///< status flags for the client
+    WEB_CLIENT_MODE mode;               ///< the operational mode of the client
+    WEB_CLIENT_ACL acl;                 ///< the access list of the client
 
-    int tcp_cork;                       // 1 = we have a cork on the socket
+    int tcp_cork;                       ///< 1 = we have a cork on the socket
 
     int ifd;
     int ofd;
@@ -141,8 +145,8 @@ struct web_client {
     char client_ip[NI_MAXHOST+1];
     char client_port[NI_MAXSERV+1];
 
-    char decoded_url[URL_MAX + 1];  // we decode the URL in this buffer
-    char last_url[URL_MAX+1];       // we keep a copy of the decoded URL here
+    char decoded_url[URL_MAX + 1];  ///< we decode the URL in this buffer
+    char last_url[URL_MAX+1];       ///< we keep a copy of the decoded URL here
 
     struct timeval tv_in, tv_ready;
 
@@ -155,7 +159,7 @@ struct web_client {
     size_t stats_received_bytes;
     size_t stats_sent_bytes;
 
-    pthread_t thread;               // the thread servicing this client
+    pthread_t thread;               ///< the thread servicing this client
 
     struct web_client *prev;
     struct web_client *next;

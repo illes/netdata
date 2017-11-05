@@ -3,6 +3,10 @@
 #ifndef NETDATA_REGISTRY_INTERNALS_H_H
 #define NETDATA_REGISTRY_INTERNALS_H_H
 
+/**
+ * @file registry_internals.h
+ */
+
 #define REGISTRY_URL_FLAGS_DEFAULT 0x00
 #define REGISTRY_URL_FLAGS_EXPIRED 0x01
 
@@ -35,7 +39,7 @@ struct registry {
     char *registry_domain;
     char *hostname;
     char *registry_to_announce;
-    time_t persons_expiration; // seconds to expire idle persons
+    time_t persons_expiration; ///< seconds to expire idle persons
     int verify_cookies_redirects;
 
     size_t max_url_length;
@@ -47,12 +51,12 @@ struct registry {
     char *log_filename;
     char *machine_guid_filename;
 
-    // open files
+    /// open files
     FILE *log_fp;
 
     // the database
-    DICTIONARY *persons;    // dictionary of REGISTRY_PERSON *,  with key the REGISTRY_PERSON.guid
-    DICTIONARY *machines;   // dictionary of REGISTRY_MACHINE *, with key the REGISTRY_MACHINE.guid
+    DICTIONARY *persons;    ///< dictionary of REGISTRY_PERSON *,  with key the REGISTRY_PERSON.guid
+    DICTIONARY *machines;   ///< dictionary of REGISTRY_MACHINE *, with key the REGISTRY_MACHINE.guid
 
     avl_tree registry_urls_root_index;
 

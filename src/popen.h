@@ -1,6 +1,10 @@
 #ifndef NETDATA_POPEN_H
 #define NETDATA_POPEN_H 1
 
+/**
+ * @file popen.h
+ */
+
 #define PIPE_READ 0
 #define PIPE_WRITE 1
 

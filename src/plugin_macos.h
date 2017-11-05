@@ -1,6 +1,10 @@
 #ifndef NETDATA_PLUGIN_MACOS_H
 #define NETDATA_PLUGIN_MACOS_H 1
 
+/**
+ * @file plugin_macos.h
+ */
+
 void *macos_main(void *ptr);
 
 #define GETSYSCTL_BY_NAME(name, var) getsysctl_by_name(name, &(var), sizeof(var))

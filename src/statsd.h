@@ -1,6 +1,10 @@
 #ifndef NETDATA_STATSD_H
 #define NETDATA_STATSD_H
 
+/**
+ * @file statsd.h
+ */
+
 #define STATSD_LISTEN_PORT 8125
 #define STATSD_LISTEN_BACKLOG 4096
 

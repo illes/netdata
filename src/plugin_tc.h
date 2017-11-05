@@ -1,6 +1,10 @@
 #ifndef NETDATA_PLUGIN_TC_H
 #define NETDATA_PLUGIN_TC_H 1
 
+/**
+ * @file plugin_tc.h
+ */
+
 extern volatile pid_t tc_child_pid;
 extern void *tc_main(void *ptr);
 

@@ -1,6 +1,10 @@
 #ifndef NETDATA_RRD2JSON_API_OLD_H
 #define NETDATA_RRD2JSON_API_OLD_H
 
+/**
+ * @file rrd2json_api_old.h
+ */
+
 extern unsigned long rrdset_info2json_api_old(RRDSET *st, char *options, BUFFER *wb);
 
 extern void rrd_graph2json_api_old(RRDSET *st, char *options, BUFFER *wb);

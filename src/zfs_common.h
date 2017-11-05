@@ -1,6 +1,10 @@
 #ifndef NETDATA_ZFS_COMMON_H
 #define NETDATA_ZFS_COMMON_H
 
+/**
+ * @file zfs_common.h
+ */
+
 #define ZFS_FAMILY_SIZE "size"
 #define ZFS_FAMILY_EFFICIENCY "efficiency"
 #define ZFS_FAMILY_ACCESSES "accesses"

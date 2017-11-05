@@ -1,13 +1,17 @@
 #ifndef NETDATA_PLUGIN_FREEBSD_H
 #define NETDATA_PLUGIN_FREEBSD_H 1
 
+/**
+ * @file plugin_freebsd.h
+ */
+
 #include <sys/sysctl.h>
 
 #define KILO_FACTOR 1024
-#define MEGA_FACTOR 1048576     // 1024 * 1024
-#define GIGA_FACTOR 1073741824  // 1024 * 1024 * 1024
+#define MEGA_FACTOR 1048576     ///< 1024 * 1024
+#define GIGA_FACTOR 1073741824  ///< 1024 * 1024 * 1024
 
-#define MAX_INT_DIGITS 10 // maximum number of digits for int
+#define MAX_INT_DIGITS 10 /// maximum number of digits for int
 
 void *freebsd_main(void *ptr);
 

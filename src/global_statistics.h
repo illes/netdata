@@ -2,7 +2,8 @@
 #define NETDATA_GLOBAL_STATISTICS_H 1
 
 // ----------------------------------------------------------------------------
-// global statistics
+/// @file global_statistics.h
+/// @brief global statistics
 
 struct global_statistics {
     volatile uint16_t connected_clients;

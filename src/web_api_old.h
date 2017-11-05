@@ -1,6 +1,10 @@
 #ifndef NETDATA_WEB_API_OLD_H
 #define NETDATA_WEB_API_OLD_H
 
+/**
+ * @file web_api_old.h
+ */
+
 #include "common.h"
 
 extern int web_client_api_old_data_request(RRDHOST *host, struct web_client *w, char *url, int datasource_type);

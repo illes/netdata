@@ -1,6 +1,10 @@
 #ifndef NETDATA_STATISTICAL_H
 #define NETDATA_STATISTICAL_H
 
+/**
+ * @file statistical.h
+ */
+
 extern long double average(long double *series, size_t entries);
 extern long double moving_average(long double *series, size_t entries, size_t period);
 extern long double median(long double *series, size_t entries);
